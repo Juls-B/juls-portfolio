@@ -44,11 +44,11 @@ const projects = [
 ];
 const gallery = [
   ...projects.map((p) => ({ img: p.img, t: p.t, href: p.f })),
-  { img: g12, t: "UI exploration", href: BEHANCE },
-  { img: g27, t: "Campus social screens", href: BEHANCE },
-  { img: cm, t: "Interface layouts", href: BEHANCE },
-  { img: wa, t: "Design work", href: BEHANCE },
-].map((g) => ({ ...g, img: typeof g.img === "string" ? g.img : g.img.url }));
+  { img: g12.url, t: "UI exploration", href: BEHANCE },
+  { img: g27.url, t: "Campus social screens", href: BEHANCE },
+  { img: cm.url, t: "Interface layouts", href: BEHANCE },
+  { img: wa.url, t: "Design work", href: BEHANCE },
+];
 const nav = ["Home", "Work", "Gallery", "About", "Skills", "Contact"];
 const skillGroups = [
   { h: "UI/UX & Product", s: ["UI design", "UX research", "Wireframing", "Prototyping", "User journeys", "Design systems", "Mobile app UI", "Web design"] },
@@ -149,7 +149,7 @@ function Index() {
         </div>
       </section>
 
-      {lb !== null && (
+      {lb !== null && gallery[lb] && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 p-4 backdrop-blur-xl" onClick={() => setLb(null)}>
           <div className="relative max-h-full w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
             <img src={gallery[lb].img} alt={gallery[lb].t} className="mx-auto max-h-[75vh] rounded-3xl object-contain" />
