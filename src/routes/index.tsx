@@ -8,6 +8,15 @@ import zyncIos from "@/assets/zync-ios.png.asset.json";
 import zyncCampus from "@/assets/zync-campus.png.asset.json";
 import iroyals from "@/assets/iroyals.png.asset.json";
 import juma from "@/assets/juma.png.asset.json";
+import cm from "@/assets/container-margin.png.asset.json";
+import wa from "@/assets/design-whatsapp.jpeg.asset.json";
+import g12 from "@/assets/group-12.png.asset.json";
+import g27 from "@/assets/group-27b.png.asset.json";
+import cv from "@/assets/julius-boamah-cv.pdf.asset.json";
+
+const EMAIL = "jboamah211006@gmail.com";
+const LINKEDIN = "https://www.linkedin.com/in/julius-boamah-24497028a";
+const BEHANCE = "https://www.behance.net/juliusboamah";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,12 +42,33 @@ const projects = [
   { t: "Juma", c: "Product UI", d: "Screen design exploration with a focus on layout and flow.", tags: ["UI"], img: juma.url, f: F + "BMLVU369JdMLxRkjFXhHXG/juma" },
   { t: "Celebrity Chief", c: "Web / app design", d: "A food-centred experience with rich imagery and editorial layout.", tags: ["Food", "Visual"], img: celebrity.url, f: F + "quXwzYqbKmkoyRQy1xxISx/celebrity-chief" },
 ];
-const nav = ["Home", "Work", "About", "Skills", "Contact"];
-const skills = ["User research", "Wireframing", "Prototyping", "Visual design", "Design systems", "Mobile UI", "Figma", "Frontend basics"];
+const gallery = [
+  ...projects.map((p) => ({ img: p.img, t: p.t, href: p.f })),
+  { img: g12, t: "UI exploration", href: BEHANCE },
+  { img: g27, t: "Campus social screens", href: BEHANCE },
+  { img: cm, t: "Interface layouts", href: BEHANCE },
+  { img: wa, t: "Design work", href: BEHANCE },
+].map((g) => ({ ...g, img: typeof g.img === "string" ? g.img : g.img.url }));
+const nav = ["Home", "Work", "Gallery", "About", "Skills", "Contact"];
+const skillGroups = [
+  { h: "UI/UX & Product", s: ["UI design", "UX research", "Wireframing", "Prototyping", "User journeys", "Design systems", "Mobile app UI", "Web design"] },
+  { h: "Design & Editing", s: ["Figma", "Photoshop", "Canva", "Premiere Pro", "After Effects", "Branding", "Graphic design", "3D modeling"] },
+  { h: "Development", s: ["HTML/CSS", "JavaScript", "React Native", "Python", "Website maintenance", "E-commerce"] },
+  { h: "AI & Strategy", s: ["AI prompt engineering", "AI-assisted design", "Recommendation systems", "Digital marketing", "Project management", "Team leadership"] },
+];
+const experience = [
+  ["2025 — now", "Founder · Juma Design & Software Agency", "Leading design, branding and video projects from planning to delivery."],
+  ["2024 — now", "Freelance UI/UX · Graphic Designer · Frontend", "Mobile app UI for clients; websites for Bartey Décor and Lodgers Restaurant."],
+  ["2026 — now", "Independent Researcher · Travel A", "Product concept, user journeys and service models for smart mobility in Ghana."],
+  ["2024 — 2025", "Marketing Strategist & E-commerce Dev · Shiirat", "Built an online store for small vendors."],
+  ["2024 — 2025", "IT & Art Instructor · JCLU School", "Taught IT, design and digital arts."],
+];
+const awards = ["1st Place — ALX Ghana Cohort Project (2025)", "1st Place — IT Club Web Dev Competition (2025)", "ALX Career Essentials Certificate (2025)"];
 const btn = "inline-flex items-center rounded-full px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5";
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [lb, setLb] = useState<number | null>(null);
   return (
     <div className="min-h-screen bg-background bg-glow font-sans">
       <header className="fixed inset-x-0 top-4 z-50 px-4">
@@ -47,7 +77,7 @@ function Index() {
           <div className="hidden gap-6 text-sm text-muted-foreground md:flex">
             {nav.map((n) => <a key={n} href={`#${n.toLowerCase()}`} className="hover:text-foreground">{n}</a>)}
           </div>
-          <a href="#contact" className="hidden rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground md:inline">Get CV</a>
+          <a href={cv.url} target="_blank" rel="noreferrer" className="hidden rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground md:inline">Get CV</a>
           <button className="md:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>☰</button>
         </nav>
         {open && (
@@ -68,7 +98,8 @@ function Index() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#work" className={`${btn} bg-primary text-primary-foreground`}>Explore my work</a>
-            <a href="#contact" className={`${btn} glass`}>Download my CV</a>
+            <a href={cv.url} target="_blank" rel="noreferrer" download className={`${btn} glass`}>Download my CV</a>
+            <a href={`mailto:${EMAIL}`} className={`${btn} text-muted-foreground hover:text-foreground`}>Say hello →</a>
           </div>
         </div>
         <div className="relative animate-rise [animation-delay:.2s]">
@@ -76,7 +107,7 @@ function Index() {
             <img src={portrait.url} alt="Julius Boamah" className="aspect-[4/5] w-full rounded-[2rem] object-cover" />
           </div>
           <div className="glass absolute -bottom-5 -left-5 rounded-2xl px-4 py-3 text-sm">
-            <span className="font-bold">7</span> <span className="text-muted-foreground">design projects below ↓</span>
+            <span className="font-bold">{gallery.length}+</span> <span className="text-muted-foreground">designs · 2× 1st place awards</span>
           </div>
         </div>
       </section>
@@ -85,10 +116,10 @@ function Index() {
         <h2 className="font-display text-4xl font-bold md:text-5xl">Selected work</h2>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {projects.map((p, i) => (
-            <article key={p.t} className={`group glass overflow-hidden rounded-[2rem] ${i % 3 === 0 ? "md:col-span-2" : ""}`}>
-              <div className={`overflow-hidden bg-muted ${i % 3 === 0 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
-                <img src={p.img} alt={p.t} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-              </div>
+            <article key={p.t} className={`group glass overflow-hidden rounded-[2rem] transition duration-500 hover:-translate-y-2 hover:shadow-2xl ${i % 3 === 0 ? "md:col-span-2" : ""}`}>
+              <button onClick={() => setLb(i)} aria-label={`Open ${p.t}`} className={`block w-full cursor-zoom-in overflow-hidden bg-muted ${i % 3 === 0 ? "aspect-[16/8]" : "aspect-[4/3]"}`}>
+                <img src={p.img} alt={p.t} loading="lazy" className="h-full w-full object-contain transition duration-700 group-hover:scale-105" />
+              </button>
               <div className="flex flex-col gap-4 p-6 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-widest text-accent">{p.c}</p>
@@ -103,25 +134,81 @@ function Index() {
         </div>
       </section>
 
+      <section id="gallery" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h2 className="font-display text-4xl font-bold md:text-5xl">Gallery</h2>
+          <a href={BEHANCE} target="_blank" rel="noreferrer" className={`${btn} glass`}>More on Behance ↗</a>
+        </div>
+        <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3">
+          {gallery.map((g, i) => (
+            <button key={i} onClick={() => setLb(i)} className="group relative mb-5 block w-full break-inside-avoid overflow-hidden rounded-3xl border border-border bg-muted">
+              <img src={g.img} alt={g.t} loading="lazy" className="w-full transition duration-700 group-hover:scale-105" />
+              <span className="glass absolute inset-x-3 bottom-3 translate-y-4 rounded-2xl px-4 py-2 text-left text-sm font-bold opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">{g.t} · view ↗</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {lb !== null && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/90 p-4 backdrop-blur-xl" onClick={() => setLb(null)}>
+          <div className="relative max-h-full w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+            <img src={gallery[lb].img} alt={gallery[lb].t} className="mx-auto max-h-[75vh] rounded-3xl object-contain" />
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-display text-xl font-bold">{gallery[lb].t}</p>
+              <div className="flex gap-2">
+                <button onClick={() => setLb((lb - 1 + gallery.length) % gallery.length)} className={`${btn} glass`}>←</button>
+                <button onClick={() => setLb((lb + 1) % gallery.length)} className={`${btn} glass`}>→</button>
+                <a href={gallery[lb].href} target="_blank" rel="noreferrer" className={`${btn} bg-primary text-primary-foreground`}>Open ↗</a>
+                <button onClick={() => setLb(null)} className={`${btn} glass`}>✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <section id="about" className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2">
-        <h2 className="font-display text-4xl font-bold md:text-5xl">About</h2>
-        <p className="text-lg text-muted-foreground">
-          I'm Julius, a UI/UX designer based in Ghana. I care about clarity, hierarchy and the small details that make an interface feel effortless. I'm also interested in frontend development and how design decisions translate into real products.
-        </p>
+        <div>
+          <h2 className="font-display text-4xl font-bold md:text-5xl">About</h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            I'm Julius, a UI/UX designer and founder of Juma Design & Software Agency in Accra, Ghana. I turn ideas into practical, user-friendly products — from banking and food delivery app concepts to websites for construction, furniture and restaurant brands. I blend design, frontend development and AI to build experiences that help businesses connect with people.
+          </p>
+          <div className="mt-8 space-y-2">{awards.map((a) => <p key={a} className="text-sm"><span className="text-accent">★</span> {a}</p>)}</div>
+        </div>
+        <div className="space-y-3">
+          {experience.map(([y, r, d]) => (
+            <div key={r} className="glass rounded-2xl p-5 transition hover:translate-x-1">
+              <p className="text-xs text-accent">{y}</p>
+              <p className="mt-1 font-bold">{r}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="skills" className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="font-display text-4xl font-bold md:text-5xl">Skills</h2>
-        <div className="mt-8 flex flex-wrap gap-3">{skills.map((s) => <span key={s} className="glass rounded-full px-5 py-2">{s}</span>)}</div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {skillGroups.map((g) => (
+            <div key={g.h} className="glass rounded-3xl p-6">
+              <p className="font-display text-lg font-bold">{g.h}</p>
+              <div className="mt-4 flex flex-wrap gap-2">{g.s.map((s) => <span key={s} className="rounded-full border border-border px-4 py-1.5 text-sm transition hover:border-primary hover:bg-primary hover:text-primary-foreground">{s}</span>)}</div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
         <div className="glass rounded-[2.5rem] p-10 text-center md:p-16">
           <h2 className="font-display text-4xl font-bold md:text-6xl">Let's build something good.</h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">Open to UI/UX roles, internships, freelance work and collaborations.</p>
-          <a href="mailto:" className={`${btn} mt-8 bg-primary text-primary-foreground`}>Email me</a>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href={`mailto:${EMAIL}`} className={`${btn} bg-primary text-primary-foreground`}>{EMAIL}</a>
+            <a href={LINKEDIN} target="_blank" rel="noreferrer" className={`${btn} glass`}>LinkedIn ↗</a>
+            <a href={BEHANCE} target="_blank" rel="noreferrer" className={`${btn} glass`}>Behance ↗</a>
+            <a href={cv.url} target="_blank" rel="noreferrer" className={`${btn} glass`}>CV ↗</a>
+          </div>
         </div>
-        <p className="mt-10 text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Julius Boamah</p>
+        <p className="mt-10 text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Julius Boamah · Accra, Ghana</p>
       </section>
     </div>
   );
