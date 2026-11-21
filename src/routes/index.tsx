@@ -13,6 +13,14 @@ import wa from "@/assets/design-whatsapp.jpeg.asset.json";
 import g12 from "@/assets/group-12.png.asset.json";
 import g27 from "@/assets/group-27b.png.asset.json";
 import cv from "@/assets/julius-boamah-cv.pdf.asset.json";
+import bankLinked from "@/assets/bank-account-linked.png.asset.json";
+import bankCards from "@/assets/bank-card-selection.png.asset.json";
+import bankLoading from "@/assets/bank-loading.png.asset.json";
+import bankHome from "@/assets/bank-home.png.asset.json";
+import bankStats from "@/assets/bank-statistics.png.asset.json";
+import bankTransactions from "@/assets/bank-transactions.png.asset.json";
+import atlasLogin from "@/assets/atlas-login.png.asset.json";
+import atlasDashboard from "@/assets/atlas-dashboard.png.asset.json";
 
 const EMAIL = "jboamah211006@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/julius-boamah-24497028a";
@@ -48,6 +56,14 @@ const gallery = [
   { img: g27.url, t: "Campus social screens", href: BEHANCE },
   { img: cm.url, t: "Interface layouts", href: BEHANCE },
   { img: wa.url, t: "Design work", href: BEHANCE },
+  { img: bankLinked.url, t: "Banking — Account linked", href: BEHANCE },
+  { img: bankCards.url, t: "Golden Ore — Card selection", href: BEHANCE },
+  { img: bankLoading.url, t: "Banking — Building your experience", href: BEHANCE },
+  { img: bankHome.url, t: "Golden Ore — Home", href: BEHANCE },
+  { img: bankStats.url, t: "Golden Ore — Statistics", href: BEHANCE },
+  { img: bankTransactions.url, t: "Golden Ore — Transactions", href: BEHANCE },
+  { img: atlasLogin.url, t: "Atlas — Login", href: F + "CWaHuKPA7CqvV3UexEsY7U" },
+  { img: atlasDashboard.url, t: "Atlas — Dashboard", href: F + "CWaHuKPA7CqvV3UexEsY7U" },
 ];
 const nav = ["Home", "Work", "Gallery", "About", "Skills", "Contact"];
 const skillGroups = [
