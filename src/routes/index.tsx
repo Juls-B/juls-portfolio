@@ -21,6 +21,16 @@ import bankStats from "@/assets/bank-statistics.png.asset.json";
 import bankTransactions from "@/assets/bank-transactions.png.asset.json";
 import atlasLogin from "@/assets/atlas-login.png.asset.json";
 import atlasDashboard from "@/assets/atlas-dashboard.png.asset.json";
+import iroyalsAbout from "@/assets/iroyals-about.webp.asset.json";
+import iroyalsServices from "@/assets/iroyals-services.webp.asset.json";
+import klikDark from "@/assets/klik-dark.webp.asset.json";
+import klikLight from "@/assets/klik-light.webp.asset.json";
+import abenaLearn from "@/assets/abena-learn.png.asset.json";
+import greenCategories from "@/assets/green-living-categories.png.asset.json";
+import campusLive from "@/assets/campus-live.png.asset.json";
+import abenaProfile from "@/assets/abena-profile.png.asset.json";
+import greenProducts from "@/assets/green-living-products.png.asset.json";
+import atlasOverview from "@/assets/atlas-design-overview.png.asset.json";
 
 const EMAIL = "jboamah211006@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/julius-boamah-24497028a";
@@ -64,6 +74,16 @@ const gallery = [
   { img: bankTransactions.url, t: "Golden Ore — Transactions", href: BEHANCE },
   { img: atlasLogin.url, t: "Atlas — Login", href: F + "CWaHuKPA7CqvV3UexEsY7U" },
   { img: atlasDashboard.url, t: "Atlas — Dashboard", href: F + "CWaHuKPA7CqvV3UexEsY7U" },
+  { img: iroyalsAbout.url, t: "iRoyals — About page", href: F + "jiGIEExw7ysxMOylsKSx4A/iRoyals" },
+  { img: iroyalsServices.url, t: "iRoyals — Services page", href: F + "jiGIEExw7ysxMOylsKSx4A/iRoyals" },
+  { img: klikDark.url, t: "Klik — Dark screens", href: BEHANCE },
+  { img: klikLight.url, t: "Klik — Light screens", href: BEHANCE },
+  { img: abenaLearn.url, t: "Abena AI — Learn", href: F + "0bFvM8ZvtlhkW4iXH3oD2A/Abena-ai" },
+  { img: greenCategories.url, t: "Green Living Store — Categories", href: BEHANCE },
+  { img: campusLive.url, t: "Campus social — Live exploration", href: BEHANCE },
+  { img: abenaProfile.url, t: "Abena AI — Profile", href: F + "0bFvM8ZvtlhkW4iXH3oD2A/Abena-ai" },
+  { img: greenProducts.url, t: "Green Living Store — Product list", href: BEHANCE },
+  { img: atlasOverview.url, t: "Atlas — Design overview", href: F + "CWaHuKPA7CqvV3UexEsY7U" },
 ];
 const nav = ["Home", "Work", "Gallery", "About", "Skills", "Contact"];
 const skillGroups = [
